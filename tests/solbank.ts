@@ -61,7 +61,7 @@ describe("solbank", () => {
   });
   it("Withdraw money", async() =>{
 
-    const tx = await program.methods.deposit(new anchor.BN(1))
+    const tx = await program.methods.withdraw(new anchor.BN(1))
     .accounts({
       client : vaultPDA,
       user : provider.wallet.publicKey,
@@ -70,7 +70,7 @@ describe("solbank", () => {
     .rpc();
 
     const account = await program.account.client.fetch(client.publicKey);
-    assert.ok(account.amount.equals(new anchor.BN(1)));
+    assert.ok(account.amount.equals(new anchor.BN(9)));
 
     console.log(`You deposited ${account.amount}`)
     console.log("Your transaction signature", tx);
